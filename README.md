@@ -1,5 +1,4 @@
-# Flipkart_Database
-Flipkart E-commerce SQL Project
+# Flipkart E-commerce SQL Project
 
 ![flipkart](https://github.com/user-attachments/assets/faaa5f3e-3f7e-42a0-bf79-52e27e240faa)
 
