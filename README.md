@@ -72,25 +72,36 @@ Here’s an overview of the database structure:
 
 The following queries were created to solve specific business questions. Each query is designed to provide insights based on sales, payments, products, and customer data.
 
-### Easy 
-1. `Add your questions here`
-2. `Add your questions here`
-3. `Add your questions here`
-4. `Add your questions here`
-5. `Add your questions here`
+### Business Problems (Easy) 
+1.	`Retrieve the total sales per customer in 'Delhi' where the order status is 'Completed', only include those with total sales greater than 50,000, and order the results by total sales (use INNER JOIN between sales and customers).`
+2.	`Show the total quantity sold per product in the 'Accessories' category where the total quantity sold is greater than 50 and order the results by product name (use INNER JOIN between sales and products).`
+3.	`Find the total number of orders for customers from 'Maharashtra' who have spent more than 1,00,000, and order the results by the total amount spent (use INNER JOIN between sales and customers).`
+4.	`Get the number of orders per product and filter to include only products that have been ordered more than 10 times, then order the results by the highest number of orders (use INNER JOIN between sales and products).`
+5.	`Retrieve the number of payments made per customer where the payment status is 'Payment Successed' and group by customer, ordering by payment count (use INNER JOIN between payments and customers).`
+
    
-### Medium to Hard
-1. `Add your questions here`
-2. `Add your questions here`
-3. `Add your questions here`
-4. `Add your questions here`
-5. `Add your questions here`
-   
+### Business Problems (Medium to Hard)
+1.	`Retrieve all products along with their total sales revenue from completed orders.`
+2.	`List all customers and the products they have purchased, showing only those who have ordered more than two products.`
+3.	`Find the total amount spent by customers in 'Gujarat' who have ordered products priced greater than 10,000.`
+4.	`Retrieve the list of all orders that have not yet been shipped.`
+5.	`Find the average order value per customer for orders with a quantity of more than 5.`
+6.	`Get the top 5 customers by total spending on 'Accessories'.`
+7.	`Retrieve a list of customers who have not made any payment for their orders.`
+8.	`Find the most popular product based on total quantity sold in 2023.`
+9.	`List all orders that were cancelled and the reason for cancellation (if available).`
+10.	`Retrieve the total quantity of products sold by category in 2023.`
+11.	`Get the count of returned orders by shipping provider in 2023.`
+12.	`Show the total revenue generated per month for the year 2023.`
+13.	`Find the customers who have made the most purchases in a single month.`
+14.	`Retrieve the number of orders made per product category in 2023 and order by total quantity sold.`
+15.	`List the products that have never been ordered (use LEFT JOIN between products and sales).`
+
 ---
 
 ## SQL Queries & Analysis
 
-The `queries.sql` file contains all SQL queries developed for this project. Each query corresponds to a business problem and demonstrates skills in SQL syntax, data filtering, aggregation, grouping, and ordering.
+The `Actual_Business_Problem.sql` file contains all SQL queries developed for this project. Each query corresponds to a business problem and demonstrates skills in SQL syntax, data filtering, aggregation, grouping, and ordering.
 
 ---
 
@@ -118,11 +129,26 @@ The `queries.sql` file contains all SQL queries developed for this project. Each
 Feel free to add your questions and code snippets below and submit them as issues for further feedback!
 
 **Example Questions**:
-1. **Question**: How can I filter orders placed in the last 6 months?
+1. **Question**: Show the total revenue generated per month for the year 2023?
    **Code Snippet**:
    ```sql
-   SELECT * FROM sales
-   WHERE order_date >= CURRENT_DATE - INTERVAL '6 months';
+   SELECT
+   	ordered_year,
+   	ordered_month,
+   	total_revenue
+   FROM
+   	(SELECT
+   		EXTRACT(YEAR FROM order_date) as ordered_year,
+   		TO_CHAR(order_date, 'Month') as ordered_month,
+   		EXTRACT(MONTH FROM order_date) as month_num,
+   		SUM(price_per_unit * quantity) as total_revenue
+   	FROM
+   		sales
+   	WHERE
+   		EXTRACT(YEAR FROM order_date) = 2023
+   	GROUP BY 1,2,3
+   	)
+   ORDER BY month_num
    ```
 
 ---
