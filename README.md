@@ -114,7 +114,7 @@ The `Actual_Business_Problem.sql` file contains all SQL queries developed for th
 ### Steps
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/flipkart-sql-project.git
+   git clone https://github.com/Wajid1905/Flipkart_Database.git
    ```
 2. **Set Up the Database**:
    - Run the `Flipkart_databases.sql` script to set up tables and insert sample data.
@@ -130,6 +130,7 @@ Feel free to add your questions and code snippets below and submit them as issue
 
 **Example Questions**:
 1. **Question**: Show the total revenue generated per month for the year 2023?
+
    **Code Snippet**:
    ```sql
    SELECT
@@ -151,6 +152,7 @@ Feel free to add your questions and code snippets below and submit them as issue
    ORDER BY month_num
    ```
 2. **Question**: List the products that have never been ordered (using LEFT JOIN and Sub-Query Method).
+   
    **Code Snippet**:
    ```sql
    SELECT 
@@ -238,7 +240,7 @@ Feel free to add your questions and code snippets below and submit them as issue
    					);
    ```
 5. **Question**: Find the average order value per customer for orders with a quantity of more than 5.
-   **Code Snippet**:
+   <br />**Code Snippet**:
    ```sql
    SELECT 
    	s.customer_id,
