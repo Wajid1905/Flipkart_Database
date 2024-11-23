@@ -1,7 +1,7 @@
 # Flipkart_Database
 Flipkart E-commerce SQL Project
 
-![Project Banner Placeholder](https://github.com/najirh/Flipkart--SQL-Project-B01/blob/main/flipkart.jpg)
+![flipkart](https://github.com/user-attachments/assets/faaa5f3e-3f7e-42a0-bf79-52e27e240faa)
 
 Welcome to my SQL project, where I analyze real-time data from **Flipkart**! This project uses a dataset of **20,000+ sales records** and additional tables for payments, products, and shipping data to explore and analyze e-commerce transactions, product sales, and customer interactions. The project aims to solve business problems through SQL queries, helping Flipkart make informed decisions.
 
