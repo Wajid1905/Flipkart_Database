@@ -130,7 +130,7 @@ Feel free to add your questions and code snippets below and submit them as issue
 
 **Example Questions**:
 1. **Question**: Show the total revenue generated per month for the year 2023?
-   **Code Snippet**:
+   <br />**Code Snippet**:
    ```sql
    SELECT
    	ordered_year,
@@ -151,7 +151,7 @@ Feel free to add your questions and code snippets below and submit them as issue
    ORDER BY month_num
    ```
 2. **Question**: List the products that have never been ordered (using LEFT JOIN and Sub-Query Method).
-   **Code Snippet**:
+   <br />**Code Snippet**:
    ```sql
    SELECT 
 	* 
@@ -175,7 +175,7 @@ Feel free to add your questions and code snippets below and submit them as issue
    	 					); 
    ```
 3. **Question**: Find the most popular product based on total quantity sold in 2023.
-   **Code Snippet**:
+   <br />**Code Snippet**:
    ```sql
    SELECT
    	s.product_id,
