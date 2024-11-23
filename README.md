@@ -169,4 +169,4 @@ functions. They do not represent real data associated with Flipkart or Amazon or
 project is solely for learning and educational purposes, and any resemblance to actual persons,
 businesses, or events is purely coincidental.
 
-![ERD Placeholder](https://github.com/najirh/Flipkart--SQL-Project-B01/blob/main/Flipkart%20Project%20Schemas.png)
+![Flipkart Project Schemas](https://github.com/user-attachments/assets/262e1a47-9931-44f2-b169-4e62798ae77c)
