@@ -117,10 +117,10 @@ The `Actual_Business_Problem.sql` file contains all SQL queries developed for th
    git clone https://github.com/yourusername/flipkart-sql-project.git
    ```
 2. **Set Up the Database**:
-   - Run the `schema.sql` script to set up tables and insert sample data.
+   - Run the `Flipkart_databases.sql` script to set up tables and insert sample data.
 
 3. **Run Queries**:
-   - Execute each query in `queries.sql` to explore and analyze the data.
+   - Execute each query in `Actual_Business_Problem.sql` to explore and analyze the data.
 
 ---
 
@@ -150,7 +150,113 @@ Feel free to add your questions and code snippets below and submit them as issue
    	)
    ORDER BY month_num
    ```
+2. **Question**: List the products that have never been ordered (using LEFT JOIN and Sub-Query Method).
+   **Code Snippet**:
+   ```sql
+   SELECT 
+	* 
+   FROM products
+   WHERE product_id NOT IN (
+							SELECT DISTINCT product_id from sales
+						)
+   ---- OR ----------------------
 
+   SELECT * 
+   FROM
+   	products p
+   LEFT JOIN
+   	sales s
+   ON
+   	s.product_id = p.product_id
+   WHERE
+   	-- s.product_id IS NULL; -- We can also use this code and exclude the remaining code show below
+   	p.product_id NOT IN (
+   	 						SELECT DISTINCT product_id from sales
+   	 					); 
+   ```
+3. **Question**: Find the most popular product based on total quantity sold in 2023.
+   **Code Snippet**:
+   ```sql
+   SELECT
+   	s.product_id,
+   	p.product_name,
+   	SUM(quantity) as total_quantity_sold
+   FROM
+   	sales s 
+   JOIN
+   	products p
+   ON
+   	s.product_id = p.product_id
+   WHERE
+   	EXTRACT(YEAR FROM order_date) = 2023
+   GROUP BY
+   	1,2
+   ORDER BY 3 DESC
+   LIMIT 10;
+   ```
+4. **Question**: Retrieve a list of customers who have not made any payment for their orders.
+   **Code Snippet**:
+   ```sql
+   SELECT
+   	c.*,
+   	s.order_id,
+   	s.order_status,
+   	s.product_id,
+   	s.price_per_unit,
+   	s.quantity	
+   FROM
+   	sales s
+   JOIN
+   	payments p
+   ON
+   	s.order_id = p.order_id
+   JOIN
+   	customers c
+   ON
+   	c.customer_id = s.customer_id
+   WHERE
+   	p.payment_status = 'Payment Failed'
+   -- *********** OR Using Sub Query Method *************
+   SELECT
+   	c.*,
+   	s.order_id,
+   	s.order_status,
+   	s.product_id,
+   	s.price_per_unit,
+   	s.quantity	
+   FROM
+   	sales s
+   JOIN
+   	customers c
+   ON
+   	s.customer_id = c.customer_id
+   WHERE
+   	s.order_id IN (
+   						SELECT DISTINCT order_id from payments
+   						WHERE
+   							payment_status = 'Payment Failed'
+   					);
+   ```
+5. **Question**: Find the average order value per customer for orders with a quantity of more than 5.
+   **Code Snippet**:
+   ```sql
+   SELECT 
+   	s.customer_id,
+   	c.customer_name,
+   	-- AVG(s.price_per_unit * s.quantity) as aov
+   	SUM(s.price_per_unit * s.quantity) / COUNT(s.order_id) AS average_order_value
+   FROM
+   	sales s
+   JOIN
+   	customers c
+   ON
+   	s.customer_id = c.customer_id
+   WHERE
+   	s.quantity > 5
+   GROUP BY
+   	1,2
+   ORDER BY 3;
+   ```
 ---
 
 ## Contact Me
@@ -162,11 +268,10 @@ Feel free to add your questions and code snippets below and submit them as issue
 ---
 
 ## ERD (Entity-Relationship Diagram)
+![Flipkart Project Schemas](https://github.com/user-attachments/assets/262e1a47-9931-44f2-b169-4e62798ae77c)
 
 ## Notice:
 All customer names and data used in this project are computer-generated using AI and random
 functions. They do not represent real data associated with Flipkart or Amazon or any other entity. This
 project is solely for learning and educational purposes, and any resemblance to actual persons,
 businesses, or events is purely coincidental.
-
-![Flipkart Project Schemas](https://github.com/user-attachments/assets/262e1a47-9931-44f2-b169-4e62798ae77c)
